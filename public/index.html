@@ -1,0 +1,33 @@
+<!doctype HTML>
+<html>
+  <head >
+  </head>
+  <meta name="viewport" width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0>
+  <script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
+  <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.6.0/aframe/build/aframe-ar.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.js" type="text/javascript"></script>
+  <script src="./addons/p5.min.js"></script>
+  <script src="./addons/p5.dom.min.js"></script>
+  <script src="./addons/p5.sound.min.js"></script>
+  <script src="sketch.js"></script>
+  <body style='margin : 0px; overflow: hidden;'>
+    <a-scene embedded arjs='sourceType: webcam; debugUIEnabled: false;'>
+      <a-light id="luz" type: "directional" color: "white" position="1 1 0.5" intensity: "1.0" decay: "1.0"></a-light>
+      <a-assets>
+        <a-asset-item id="sol-obj" src="./addons/sun.obj"></a-asset-item>
+        <a-asset-item id="sol-mtl" src="./addons/sun.mtl"></a-asset-item>
+        <a-asset-item id="drops-obj" src="./addons/model.obj"></a-asset-item>
+        <a-asset-item id="drops-mtl" src="./addons/materials.mtl"></a-asset-item>
+      </a-assets>
+      <!--a-marker preset="hiro"-->
+      <a-marker preset='custom' type='pattern' url='./addons/new_marker.patt'>
+        <a-text id="temperatura" value="00:00" position="0.5 1.0 -1.2" width="15px" color="#013ADF" align="center" rotation="-90 0 0" text="font:  https://cdn.aframe.io/fonts/Exo2Bold.fnt"></a-text>
+        <a-text id="umidade" value="00:00" position="0.5 1.0 1.2" width="15px" color="#013ADF" align="center" rotation="-90 0 0" text="font:  https://cdn.aframe.io/fonts/Exo2Bold.fnt"></a-text>
+        <a-entity id="sol" obj-model="obj: #sol-obj; mtl: #sol-mtl" scale="0.4 0.4 0.4" rotation="-90 0.0 0.0" position="-1.5 1.0 -1.2"></a-entity>
+        <a-entity id="drops" obj-model="obj: #drops-obj; mtl: #drops-mtl" scale="1.5 1.5 1.5" rotation="-90.0 0.0 0.0" position="-1.5 1.0 1.2"></a-entity>
+      </a-marker>
+      <a-entity camera></a-entity>
+    </a-scene>   
+    <div id = "p5js"></div>
+  </body>
+</html>
